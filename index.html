@@ -39,6 +39,34 @@
       style="border:0;"
       allowfullscreen=""
       loading="lazy"></iframe>
+    <hr>
+
+<h2>Konfirmasi Kehadiran</h2>
+
+<input type="text" id="nama" placeholder="Nama Anda" style="width:100%; padding:10px; margin:5px 0;">
+<select id="status" style="width:100%; padding:10px; margin:5px 0;">
+  <option value="Hadir">Hadir</option>
+  <option value="Tidak Hadir">Tidak Hadir</option>
+</select>
+
+<button onclick="kirimRSVP()" style="padding:10px 20px; margin-top:10px;">
+  Kirim RSVP
+</button>
+
+<script>
+function kirimRSVP() {
+  const nama = document.getElementById("nama").value;
+  const status = document.getElementById("status").value;
+
+  const pesan = `Halo, saya ${nama}. Konfirmasi kehadiran: ${status}.`;
+  const noWa = "6285220528558"; // GANTI NOMOR WA PENGANTIN
+
+  window.open(
+    `https://wa.me/${noWa}?text=${encodeURIComponent(pesan)}`,
+    "_blank"
+  );
+}
+</script>
 
     <p id="countdown"></p>
 
