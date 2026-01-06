@@ -6,6 +6,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
+    .section {
+  margin-top: 30px;
+}
+
+input, select, button {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background: #7a4a2e;
+  color: white;
+  border: none;
+  font-weight: bold;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 15px;
+}
+
+.stats div {
+  background: #f0e7df;
+  padding: 10px;
+  border-radius: 8px;
+  width: 45%;
+}
+    
     body {
       font-family: Arial, sans-serif;
       text-align: center;
@@ -40,6 +72,22 @@
       allowfullscreen=""
       loading="lazy"></iframe>
     <hr>
+    <div class="section">
+  <h2>Konfirmasi Kehadiran</h2>
+
+  <div class="stats">
+    <div>✔ Hadir: <span id="hadir">0</span></div>
+    <div>✖ Tidak Hadir: <span id="tidak">0</span></div>
+  </div>
+
+  <input type="text" id="nama" placeholder="Nama Anda">
+  <select id="status">
+    <option value="Hadir">Hadir</option>
+    <option value="Tidak Hadir">Tidak Hadir</option>
+  </select>
+
+  <button onclick="kirimRSVP()">Kirim</button>
+</div>
 
     <p id="countdown"></p>
 
@@ -47,6 +95,33 @@
       <source src="1659_Wedding_Piano_with_Vocal_Melody.mp3" type="audio/mpeg">
     </audio>
   </div>
+
+  <script>
+let hadir = 0;
+let tidak = 0;
+
+function kirimRSVP() {
+  const status = document.getElementById("status").value;
+
+  if (status === "Hadir") {
+    hadir++;
+    document.getElementById("hadir").innerText = hadir;
+  } else {
+    tidak++;
+    document.getElementById("tidak").innerText = tidak;
+  }
+
+  const nama = document.getElementById("nama").value;
+  const pesan = `Halo, saya ${nama}. Konfirmasi kehadiran: ${status}.`;
+  const noWa = "6281234567890"; // GANTI NOMOR
+
+  window.open(
+    `https://wa.me/${noWa}?text=${encodeURIComponent(pesan)}`,
+    "_blank"
+  );
+}
+</script>
+
 
   <script>
     // Nama tamu dari link
@@ -67,6 +142,11 @@
         "⏳ " + hari + " hari lagi";
     }, 1000);
   </script>
+
+  <div class="section">
+  <h2>Ucapan & Doa</h2>
+</div>
+
 
   <div id="disqus_thread"></div>
 <script>   
